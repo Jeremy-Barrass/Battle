@@ -1,7 +1,12 @@
 require 'spec_helper'
+require 'capybara/dsl'
+require 'selenium-webdriver'
 
 feature 'Player Set up' do
-
+  before do
+    include Capybara::DSL
+    Capybara.default_driver = :selenium
+  end
 
   scenario 'Signing up' do
     sign_in_and_play
