@@ -11,9 +11,21 @@ class Game
   def initialize(player1,player2)
     @player_1 = player1
     @player_2 = player2
+    @turn = player_1
+  end
+
+  def turn
+    @turn.name
   end
 
   def attack(player)
     player.attacked_hp
+    switch_turn(player)
+  end
+
+  private
+
+  def switch_turn(player)
+    @turn = player
   end
 end
