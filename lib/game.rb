@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class Game
   extend Forwardable
 
@@ -23,9 +25,22 @@ class Game
     switch_turn(player)
   end
 
+  def player_not_playing
+    if turn != @player_1.name
+      player_1
+    else
+      player_2
+    end
+  end
+
+  def player_lost?
+    player_1.lost? || player_2.lost?
+  end
+
   private
 
   def switch_turn(player)
     @turn = player
   end
+
 end

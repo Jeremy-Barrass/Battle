@@ -11,4 +11,8 @@ class Player
   def attacked_hp
     @hp -= 10
   end
+
+  def lost?
+    true if hp <= 0
+  end
 end

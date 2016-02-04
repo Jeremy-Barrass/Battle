@@ -6,13 +6,13 @@ require_relative 'game.rb'
 
 class Battle < Sinatra::Base
   use Rack::Session::Pool, :expire_after => 2592000
-  set :sesion_secret, "super secret"
+  set :session_secret, "super secret"
 
   STARTING_HP = 100
   ATTACK_HP = 10
 
   get '/' do
-    'Hello Battle!'
+    erb :home
   end
 
   get '/sign_up' do
@@ -31,8 +31,12 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    $game.attack($game.player_2)
-    erb :attack
+    $game.attack($game.player_not_playing)
+    if $game.player_lost?
+      redirect '/battle_over'
+    else
+      redirect '/attack'
+    end
   end
 
   get '/attack' do
@@ -40,7 +44,9 @@ class Battle < Sinatra::Base
     erb :attack
   end
 
-
+  get '/battle_over' do
+    erb :battle_over
+  end
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

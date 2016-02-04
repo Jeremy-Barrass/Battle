@@ -1,5 +1,11 @@
-<%=$game.player_1_name %> attacked <%= $game.player_2_name %>
+ <%= $game.player_not_playing.name %> attacked <%=$game.turn %>
 
-<form action='/play'>
-  <input type='submit' value='Next turn'>
-</form>
+<% if $game.player_lost?%>
+  <form action='/battle_over'>
+    <input type='submit' value='Next turn'>
+  </form>
+<% else %>
+  <form action='/play'>
+    <input type='submit' value='Next turn'>
+  </form>
+<% end %>
