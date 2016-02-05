@@ -4,8 +4,8 @@ require 'selenium-webdriver'
 
 feature 'Switching turns' do
   before do
-    include Capybara::DSL
-    Capybara.default_driver = :selenium
+    # include Capybara::DSL
+    # Capybara.default_driver = :selenium
     sign_in_and_play
   end
   scenario 'Before turn begins' do

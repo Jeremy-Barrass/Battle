@@ -4,13 +4,13 @@ require 'selenium-webdriver'
 
 feature 'Losing the game' do
   before do
-    include Capybara::DSL
-    Capybara.default_driver = :selenium
+    # include Capybara::DSL
+    # Capybara.default_driver = :selenium
     sign_in_and_play
-    18.times {attack_and_switch}
     attack
+    switch_and_attack until $game.player_lost?
   end
-  scenario 'Player 2 reaches 0 hit points' do
-    expect(page).to have_content 'Donald Trump has lost!!'
+  scenario 'Player reaches 0 hit points' do
+    expect(page).to have_content "#{$game.turn} has lost!!"
   end
 end

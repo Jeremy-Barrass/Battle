@@ -20,4 +20,12 @@ describe Player do
       end
     end
   end
+
+  context 'When the player is attacked' do
+    describe'#attacked_hp' do
+      it 'reduces the player\'s hit points by a random number' do
+        expect{player1.attacked_hp}.to change{player1.hp}
+      end
+    end
+  end
 end

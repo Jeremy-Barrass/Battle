@@ -9,7 +9,7 @@ class Player
   end
 
   def attacked_hp
-    @hp -= 10
+    @hp -= rand(20)
   end
 
   def lost?

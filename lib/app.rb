@@ -40,7 +40,7 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    $game
+    $game # This lets the attack view see the game.
     erb :attack
   end
 
